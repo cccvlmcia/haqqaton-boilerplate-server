@@ -100,17 +100,9 @@ const dbLogger = winston.createLogger({
 
 dbLogger.stream = logStream;
 
-const wsLogger = winston.createLogger({
-  level: level(),
-  levels,
-  format: logFormat("ws"),
-  transports: transports("ws"),
-});
-
-wsLogger.stream = logStream;
-
+// uncaughtException
 process.on("uncaughtException", function (err) {
   apiLogger.error("uncaughtException: " + err.stack);
 });
 
-export {apiLogger, dbLogger, wsLogger};
+export {apiLogger, dbLogger};
